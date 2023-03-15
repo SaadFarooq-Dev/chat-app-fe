@@ -3,41 +3,19 @@ import ChatPage from './components/ChatPage';
 import SignUp from './components/SignUp';
 import { Route, Routes } from 'react-router-dom';
 import './styles/App.css';
-import "bootstrap/dist/css/bootstrap.min.css"
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
-  return (
-    <>
-      <Routes>
-        <Route path='/' element={<Auth />} />
-        <Route path='/login' element={<Auth />} />
-        <Route path="/chat" element={<ChatPage />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
-
-    {/* {
-      jwt ?
-    (  <div className="App">
-      <header className="app-header">
-        React Chat
-      </header>
-      { socket ? (
-        <div className="chat-container" style={{maxHeight:'50vh',overflowY:'scroll'}}>
-          <Messages socket={socket} />
-          <MessageInput socket={socket} />
-        </div>
-      ) : (
-        <div>Not Connected</div>
-        )}
-    </div>
-    ) :
-    (
-      <Auth/>
-    )
-    } */}
-   </>
-  );
-}
+ return (
+  <>
+   <Routes>
+    <Route path='/' element={<Auth />} />
+    <Route path='/login' element={<Auth />} />
+    <Route path='/chat' element={<ChatPage />} />
+    <Route path='/signup' element={<SignUp />} />
+   </Routes>
+  </>
+ );
+};
 
 export default App;

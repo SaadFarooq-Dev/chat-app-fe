@@ -2,32 +2,33 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
- const Auth = () => {
+const Auth = () => {
+ const navigate = useNavigate();
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if((localStorage.getItem('JWT'))){
-      navigate('/chat')
-    }
-  }, []);
-
-  const handleLogin = async (e) =>{
-    e.preventDefault()
-    const email = e.target[0].value
-    const password = e.target[1].value
-    try {
-      await axios.post('http://localhost:4000/api/auth',{
-      email: email,
-      password: password
-    }).then(res => {
-      localStorage.setItem('JWT',res.data.token)
-      navigate('/chat')
-    })
-    } catch (error) {
-      console.log(error)
-    }
+ useEffect(() => {
+  if (localStorage.getItem('JWT')) {
+   navigate('/chat');
   }
+ }, []);
+
+ const handleLogin = async (e) => {
+  e.preventDefault();
+  const email = e.target[0].value;
+  const password = e.target[1].value;
+  try {
+   await axios
+    .post('http://localhost:4000/api/auth', {
+     email: email,
+     password: password,
+    })
+    .then((res) => {
+     localStorage.setItem('JWT', res.data.token);
+     navigate('/chat');
+    });
+  } catch (error) {
+   console.log(error);
+  }
+ };
 
  return (
   <div className='Auth-form-container'>
@@ -64,5 +65,5 @@ import { useNavigate } from 'react-router-dom';
    </form>
   </div>
  );
-}
-export default Auth
+};
+export default Auth;
