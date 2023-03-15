@@ -7,10 +7,14 @@ import { decodeToken } from "react-jwt";
 
 const ChatPage = () =>{
 
-  const navigate = useNavigate();
   const [user, setUser] = useState(decodeToken(localStorage.getItem('JWT')).user)
-
   const [socket, setSocket] = useState(null);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("JWT");
+    navigate('/login')
+  }
 
   useEffect(() => {
     if(!(localStorage.getItem('JWT'))){
@@ -30,6 +34,7 @@ return (
     <div className="App">
       <header className="app-header">
         React Chat
+        <button className='btn btn-primary' onClick={handleLogout}>Logout</button>
       </header>
       { socket ? (
         <div className="chat-container" style={{maxHeight:'50vh',overflowY:'scroll'}}>
